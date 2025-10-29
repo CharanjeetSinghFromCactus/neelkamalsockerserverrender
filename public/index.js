@@ -22,5 +22,12 @@ fetch('api/products').then(response => response.json()).then(data => {
         // modelViewer.setAttribute('max-camera-orbit', `auto 90deg ${selectedProduct.zoom}`);
         console.log(`Model selected: ${selectedProductJson}`);
         socket.emit('modelSelected', { selectedProduct: selectedProductJson });
+
+        modelViewer.addEventListener('camera-change', () => {
+            const {theta} = modelViewer.getCameraOrbit();
+            const degree = theta * (180 / Math.PI);
+            // console.log(`Camera orbit changed: theta=${deg}`);
+            socket.emit('camera-change', {deg: degree});
+        })
     });
 })

@@ -13,6 +13,11 @@ io.on('connection', socket => {
          console.log(`Model selected: ${data.selectedProduct}`);
          io.emit('modelSelected', { selectedProduct: data.selectedProduct });
    })
+
+    socket.on('camera-change', data => {
+        console.log(`Camera change: ${data.deg}`);
+        io.emit('camera-change', { deg: data.deg });
+    })
 });
 
 app.use('/api/products',products)
