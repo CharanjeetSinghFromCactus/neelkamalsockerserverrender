@@ -8,8 +8,6 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-
-
 io.on('connection', socket => {
    socket.on('modelSelected',data => {
          console.log(`Model selected: ${data.selectedProduct}`);
